@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,13 +31,10 @@
    </div>
   </div>
   <script>
-   var d=document.getElementById('header-title')
-   d.textContent="Hello"
-   d.style.borderBottom="solid 3px #000"
-   d.style.fontWeight="bold"
-   d.style.color="green"
-
-
+    let d=document.getElementsByClassName("list-group-item")
+    d[2].style.backgroundColor="green"
+    for(let i=0;i<"list-group".length;i++){
+    d[i].style.fontWeight="bold"}
   </script>
 
 </body>
