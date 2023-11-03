@@ -27,15 +27,19 @@
       <li class="list-group-item">Item 2</li>
       <li class="list-group-item">Item 3</li>
       <li class="list-group-item">Item 4</li>
-      <li>Item 5</li>
     </ul>
    </div>
   </div>
   <script>
-    let d=document.querySelector("li")
-    d.style.color="red";
- 
     
+   let d=document.querySelectorAll("li:nth-child(odd)")
+   for(let i=0;i<d.length;i++)
+   {
+    d[i].style.backgroundColor="green"
+   
+   }
+   let n=document.querySelectorAll("ul li")
+   n[1].style.color="red"
   </script>
 
 </body>
