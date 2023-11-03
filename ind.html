@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,15 +30,13 @@
    </div>
   </div>
   <script>
+    let s=document.querySelector(".container")
+    s.firstElementChild.textContent=" Hello Item Lister"
+    console.log(s.firstElementChild)
     
-   let d=document.querySelectorAll("li:nth-child(odd)")
-   for(let i=0;i<d.length;i++)
-   {
-    d[i].style.backgroundColor="green"
-   
-   }
-   let n=document.querySelectorAll("ul li")
-   n[1].style.color="red"
+    let d=document.querySelector("#items")
+    d.firstElementChild.textContent="Hello Item 1"
+    console.log(d.firstElementChild)
   </script>
 
 </body>
