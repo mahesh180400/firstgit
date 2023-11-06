@@ -38,7 +38,17 @@
                 let parent=document.getElementById('listed')
                 let child=document.createElement('li')
                 child.textContent=obj.name + ' - ' + obj.email + '- '+obj.pnumber
+               
+                let dele=document.createElement('input')
+                dele.type="button"
+                dele.value="Delete"
+                dele.onclick=()=>{
+                    localStorage.removeItem(obj.email)
+                    parent.removeChild(child)
+                }
+                child.appendChild(dele)
                 parent.appendChild(child)
+
             }
                       
 
