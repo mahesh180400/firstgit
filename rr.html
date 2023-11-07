@@ -40,12 +40,23 @@
                 child.textContent=obj.name + ' - ' + obj.email + '- '+obj.pnumber
                
                 let dele=document.createElement('input')
+                let edi=document.createElement('input')
+                edi.type="button"
                 dele.type="button"
+                edi.value="edit"
                 dele.value="Delete"
                 dele.onclick=()=>{
                     localStorage.removeItem(obj.email)
                     parent.removeChild(child)
                 }
+                edi.onclick=()=>{
+                    localStorage.removeItem(obj.email)
+                    parent.removeChild(child)
+                    document.getElementById('fname').value=obj.name
+                    document.getElementById('eemail').value=obj.email
+                    document.getElementById('pnumber').value=obj.pnumber
+                }
+                child.appendChild(edi)
                 child.appendChild(dele)
                 parent.appendChild(child)
 
