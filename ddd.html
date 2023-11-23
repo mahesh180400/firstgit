@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const posts=[
+            {title:'Post one',lastseen:'13th of jan',},
+            {title:'Post two',lastseen:'14th of jan',}
+        ];
+
+        function getPosts(){
+            setTimeout(()=>{
+                let output=' ';
+                for(let i=0;i<posts.length;i++)
+                {let c=posts[i].title
+                let d=posts[i].lastseen
+                    output+=c+' '+d+ '<br>'
+                }
+                document.body.innerHTML=output;
+            },1000)
+        }
+
+        function createPost(post){
+            return new Promise((resolve,reject)=>{
+                setTimeout(()=>{
+                    posts.push(post);
+                    lastactivity()
+                    const error=false;
+                    if(!error){
+                        resolve()
+                    }else{
+                        reject("Error:Something is wrong")
+                    }
+                },2000)
+            })
+        }
+        function lastactivity(){
+            return new Promise((resolve,reject)=>{
+                setTimeout(() => {
+                    posts.lastseen=new Date().getTime()
+                    resolve(posts.lastactivity)
+                    
+                },1000);
+            })
+        }
+       
+        createPost({title:'post three',lastseen:'16th of jan'})
+       .then(()=>{
+        getPosts()
+        lastactivity()
+       })
+       .catch(err=>console.log(err))
+
+        
+       
+       
+
+</script>
+</body>
+</html>
