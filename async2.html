@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=   <script>
+        
+
+        console.log('person1: shows ticket')
+        console.log('person2: shows ticket')
+        const preMovie=async()=>{
+            const promiseWifeBringingTicks=new Promise((resolve,reject)=>{
+                setTimeout(()=>resolve('ticket'),3000)
+            })
+            
+            const getPopcorn=new Promise((resolve,reject)=>resolve("popcorn"));
+            const getcandy=new Promise((resolve,reject)=>resolve("candy"))
+            const getcoke=new Promise((resolve,reject)=>resolve("coke"))
+            let ticket= await promiseWifeBringingTicks;
+            let [popcorn,candy,coke]=await Promise.all([getPopcorn,getcandy,getbutter])
+            console.log(popcorn+" "+candy+" "+coke)
+            return ticket;
+        }
+        preMovie().then((m)=>console.log('person3:shows '+m))
+        console.log('person4: shows ticket')
+        console.log('person5: shows ticket')
+    </script>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
