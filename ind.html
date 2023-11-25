@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+
+    <body id="body">
+
+        <form onsubmit="myfunc(event)">
+            <div>
+        <label >Full Name :</label>
+        <input type="text" id="fname">
+        <label> Email ID :</label>
+        <input type="email" id="eemail">
+        <label >Phone No :</label>
+        <input type="number" id="pnumber">
+        <button type="submit">Submit</button>
+        <ul id="listed"></ul>
+        <script>
+            function myfunc(event)
+            {
+                event.preventDefault();
+                let name=event.target.fname.value;
+                let email=event.target.eemail.value
+                let pnumber=event.target.pnumber.value
+                const obj={
+                    name,
+                    email,
+                    pnumber
+                }
+
+                axios.post("https://crudcrud.com/api/3d0c3f5a49f248daad8aa88a87032328/appointmentData", obj)
+                .then((response)=>{
+                    showUserOnScreen(response.data)
+                    console.log(response)
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+                //localStorage.setItem(obj.email,JSON.stringify(obj))
+                //showUserOnScreen(obj)
+
+            }
+            function showUserOnScreen(obj)
+            {
+                let parent=document.getElementById('listed')
+                let child=document.createElement('li')
+                child.textContent=obj.name + ' - ' + obj.email + '- '+obj.pnumber
+                parent.appendChild(child)
+            }
+
+
+        </script>
+
+
+
+    </div>
+    </form>
+
+</body>
+
+</html>
