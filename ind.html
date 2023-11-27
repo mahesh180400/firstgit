@@ -31,8 +31,8 @@
                     name,
                     pnumber
                 }
-
-                axios.post("https://crudcrud.com/api/e1e4a4ecdd33491cbbe0963220592231/appointmentData", obj)
+                
+                axios.post("https://crudcrud.com/api/77fc0ae18d8643c0a0e80b886da82185/appointmentData", obj)
                 .then((response)=>{
                     showUserOnScreen(response.data)
                     console.log(response)
@@ -40,13 +40,11 @@
                 .catch((err)=>{
                     console.log(err)
                 })
-                //localStorage.setItem(obj.email,JSON.stringify(obj))
-                //showUserOnScreen(obj)
-
+            
             }
             
             window.addEventListener("DOMContentLoaded",()=>{
-                axios.get("https://crudcrud.com/api/e1e4a4ecdd33491cbbe0963220592231/appointmentData")
+                axios.get("https://crudcrud.com/api/77fc0ae18d8643c0a0e80b886da82185/appointmentData")
                 .then((response)=>{
                     console.log(response)
                     for(let i=0;i<response.data.length;i++)
@@ -64,20 +62,38 @@
                 let parent=document.getElementById('listed')
                 let child=document.createElement('li')
                 let dbt=document.createElement("button")
+                let edi=document.createElement("button")
+                edi.textContent="Edit"
                 dbt.textContent="Delete"
-               
-                dbt.getElementById='dbtt'
-                
+                               
               child.textContent=obj.name + ' - ' + obj.email + '- '+obj.pnumber;
               child.appendChild(dbt)
+              child.appendChild(edi) 
                 parent.appendChild(child)
+                
+                
                 dbt.onclick=()=>{
-                console.log("HO Raha hai..")
-                 axios.delete(`https://crudcrud.com/api/e1e4a4ecdd33491cbbe0963220592231/appointmentData/${obj._id}`)
+                 axios.delete(`https://crudcrud.com/api/77fc0ae18d8643c0a0e80b886da82185/appointmentData/${obj._id}`)
                  .then(res=>console.log(res))
                  .catch(err=>console.log(err))
                 parent.removeChild(child)
                 }
+
+                edi.onclick=()=>{
+                    axios.delete(`https://crudcrud.com/api/77fc0ae18d8643c0a0e80b886da82185/appointmentData/${obj._id}`)
+                 .then(res=>console.log(res))
+                 .catch(err=>console.log(err))
+                  
+                    document.getElementById('fname').value=obj.name;
+                    document.getElementById('eemail').value=obj.email;
+                    document.getElementById('pnumber').value=obj.pnumber;
+                   
+                    parent.removeChild(child)
+                   
+                    
+
+                }
+
                 
             }
 
