@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAMAZON</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
+<body >
+    <form onsubmit="func(event)">
+    <div>
+    <label for="price">Selling Price : </label>
+    <input type="number" id="price">
+    <label for="product">Product Name :</label>
+    <input type="text" id="Name">
+    <label for="category">Choose category :</label>
+    <select name="category" id="category">
+        <option value="Food Products">Food Products</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Skin Care">Skin Care</option>
+    </select>
+    <button >Add To Cart</button>
+   
+    <ul id="listed"></ul>
+    </div>
+    </form>
+    
+<script>
+    function func(event){
+        event.preventDefault()
+        let price=document.getElementById('price').value;
+        let name=document.getElementById('Name').value;
+        let category=document.getElementById('category').value;
+        const obj={
+            price,
+            name,
+            category
+        }
+        axios.post("https://crudcrud.com/api/5f9646dcc31742faaef2005804b89a8a/cart", obj)
+        .then((response)=>{console.log(response)
+          showuser(obj)})
+          .catch((err)=>{console.log(err)})
+      
+       
+        }
+
+
+      
+        window.addEventListener("DOMContentLoaded",()=>{
+                axios.get("https://crudcrud.com/api/5f9646dcc31742faaef2005804b89a8a/cart")
+          
+                .then((response)=>{
+                    console.log(response)
+                    for(let i=0;i<response.data.length;i++)
+                    {
+                        showuser(response.data[i])
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            })
+
+    function showuser(obj){
+        let parent=document.getElementById("listed")
+     
+        let child=document.createElement('li')
+        let btn=document.createElement('button')
+        btn.textContent="Delete"
+        child.textContent=`Price:${obj.price} - Name:${obj.name}  -Category:${obj.category}  `
+        child.appendChild(btn)
+        parent.appendChild(child)
+       
+        
+        btn.onclick=()=>{
+            axios.delete(`https://crudcrud.com/api/5f9646dcc31742faaef2005804b89a8a/cart/${obj._id}`)
+            .then((res)=>{console.log(res)})
+            .catch((err)=>{console.log(err)})
+            parent.removeChild(child)
+        }
+
+
+    }
+   
+</script>
+</body>
+</html>
